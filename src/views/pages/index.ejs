@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="bg-slate-600 flex justify-center items-center">
+    <div
+      class="container flex items-center flex-col h-screen w-screen gap-36 pt-10"
+    >
+      <h1 class="text-7xl"></h1>
+      <div class="flex items-center justify-center flex-col gap-5">
+        <video autoplay="true" id="video"></video>
+        <button
+          onclick="takePicture()"
+          class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Take Picture
+        </button>
+      </div>
+    </div>
+    <%- include('../partials/modal'); %>
+    <script>
+      const videoElement = document.getElementById("video");
+      const canvasElement = document.getElementById("canvas");
+      const dialogElement = document.getElementById("modal");
+      const email = document.getElementById("email");
+      let image_data_url = "";
+
+      navigator.getUserMedia(
+        {
+          video: true,
+          audio: false,
+        },
+        (stream) => {
+          console.log(stream);
+          videoElement.srcObject = stream;
+          console.log("success");
+        },
+        (e) => {
+          console.log("Error");
+        }
+      );
+
+      console.log(canvasElement);
+
+      function takePicture() {
+        console.log("take pic");
+        canvasElement
+          .getContext("2d")
+          .drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+        image_data_url = canvas.toDataURL("image/jpeg");
+
+        // data url of the image
+        console.log(image_data_url);
+
+        showDialog();
+      }
+
+      function showDialog() {
+        dialogElement.classList.remove("hidden");
+        dialogElement.classList.add("flex");
+        setTimeout(() => {
+          dialogElement.classList.add("opacity-100");
+        }, 20);
+      }
+
+      function hideDialog() {
+        dialogElement.classList.add("opacity-0");
+        dialogElement.classList.remove("opacity-100");
+        setTimeout(() => {
+          dialogElement.classList.add("hidden");
+          dialogElement.classList.add("flex");
+        }, 500);
+      }
+
+      function sendPicture() {
+        console.log("send picture");
+        console.log(email.value);
+        console.log(image_data_url);
+
+        fetch("/api/sender/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email.value,
+            image: image_data_url,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+
+        hideDialog();
+      }
+    </script>
+  </body>
+</html>
