@@ -10,7 +10,7 @@ dotenv.config();
 const app: Express = express();
 
 var corsOptions = {
-  origin: ["https://selfie.pollak.info/","http://localhost:5173"],
+  origin: ["https://selfie.pollak.info","http://localhost:5173"],
   optionsSuccessStatus: 200
 }
 
