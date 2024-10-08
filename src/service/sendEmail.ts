@@ -8,11 +8,11 @@ export function sendEmail(emailAddress: string, image: string) {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
-    secure: true,
+    secure: false,
   });
 
   const mailData = {
-    from: process.env.EMAIL_USER,
+    from: process.env.EMAIL_FROM,
     to: emailAddress,
     subject: "Test Email",
     html: `<h1>Üdvözlünk a pollákból!</h1><br/><img title="Hi" alt="hi" src="cid:image" />`,

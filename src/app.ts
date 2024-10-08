@@ -7,7 +7,7 @@ dotenv.config();
 
 // Create Express server
 const app: Express = express();
-const port = process.env.PORT || 3000;
+const port = process.env.APP_PORT || 3000;
 
 // Express configuration
 app.set("view engine", "ejs");
@@ -21,9 +21,9 @@ app.use(express.json());
 app.use("/api/sender", senderController);
 
 // Default route
-app.get("/", (req: Request, res: Response) => {
-  res.render("pages/index");
-});
+// app.get("/", (req: Request, res: Response) => {
+//   res.render("pages/index");
+// });
 
 // Start Express server
 app.listen(port, () => {
