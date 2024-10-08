@@ -36,7 +36,7 @@ jobs:
           platforms: ${{ matrix.platform }}
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/pollak-projects/merch_backend/app:latest
+          tags: ghcr.io/adrianhuszka/pollak_selfie/app:latest
 
   # triggerUpdate:
   #   name: Trigger Update
