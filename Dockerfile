@@ -1,9 +1,9 @@
 # Build stage
-FROM node:lts-alpine3.20 AS build
+FROM node:22 AS build
 
 RUN apt-get update && apt-get install -y libc6
 
-WORKDIR /
+WORKDIR .
 
 COPY package*.json . 
 
@@ -14,9 +14,9 @@ COPY . .
 RUN npm run build
 
 # Production stage
-FROM node:lts-alpine3.20 AS production
+FROM node:22 AS production
 
-WORKDIR /
+WORKDIR .
 
 COPY package*.json . 
 
