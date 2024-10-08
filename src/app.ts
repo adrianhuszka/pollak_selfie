@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+import cors from "cors"
 import { router as senderController } from "./controller/sender.controller";
 
 // Load environment variables from .env file
@@ -7,6 +8,14 @@ dotenv.config();
 
 // Create Express server
 const app: Express = express();
+
+var corsOptions = {
+  origin: ["https://selfie.pollak.info/","http://localhost:5175"],
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
+
 const port = process.env.APP_PORT || 3000;
 
 // Express configuration
