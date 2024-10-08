@@ -13,6 +13,7 @@
   "author": "Huszka Adrián Gábor",
   "license": "ISC",
   "dependencies": {
+    "@imgly/background-removal-node": "^1.4.5",
     "autoprefixer": "^10.4.20",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import cors from "cors"
+import cors from "cors";
 import { router as senderController } from "./controller/sender.controller";
 
 // Load environment variables from .env file
@@ -10,11 +10,11 @@ dotenv.config();
 const app: Express = express();
 
 var corsOptions = {
-  origin: ["https://selfie.pollak.info","http://localhost:5173"],
-  optionsSuccessStatus: 200
-}
+  origin: ["https://selfie.pollak.info", "http://localhost:5173"],
+  optionsSuccessStatus: 200,
+};
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
 const port = process.env.APP_PORT || 3000;
 
@@ -30,9 +30,9 @@ app.use(express.json());
 app.use("/api/sender", senderController);
 
 // Default route
-// app.get("/", (req: Request, res: Response) => {
-//   res.render("pages/index");
-// });
+app.get("/", (req: Request, res: Response) => {
+  res.render("pages/index");
+});
 
 // Start Express server
 app.listen(port, () => {
