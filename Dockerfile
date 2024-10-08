@@ -1,6 +1,8 @@
 # Build stage
 FROM node:lts-alpine3.20 AS build
 
+RUN apt-get update && apt-get install -y libc6
+
 WORKDIR /
 
 COPY package*.json . 
