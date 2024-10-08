@@ -17,7 +17,7 @@ router.post("/send", async (req: Request, res: Response) => {
 
   try {
     sendEmail(email, image);
-    saveToLocal(image);
+    // saveToLocal(image);
     return res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
     return res
