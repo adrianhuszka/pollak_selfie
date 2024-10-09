@@ -1,6 +1,7 @@
 import express, { Request, Response, Router } from "express";
 import { sendEmail } from "../service/sendEmail";
 import { saveToLocal } from "../service/imageLocalSave";
+import { imageSaveToDB } from "../service/imageDBSave";
 
 const router: Router = express.Router();
 
@@ -17,6 +18,7 @@ router.post("/send", async (req: Request, res: Response) => {
 
   try {
     sendEmail(email, image);
+    await imageSaveToDB(image);
     await saveToLocal(image);
     return res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {

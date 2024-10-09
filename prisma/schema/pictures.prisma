@@ -1,0 +1,5 @@
+model Pictures {
+    id        Int      @id @default(autoincrement())
+    image     Bytes    @db.Blob
+    createdAt DateTime @default(now())
+}

@@ -1,5 +1,5 @@
 import fs from "fs";
-import { removeImageBackground } from "./backgroundRemover";
+import { removeImageBackground } from "../utils/backgroundRemover";
 
 export async function saveToLocal(imageBase64: string) {
   const date = new Date().toISOString().replace(/:/g, "-").split(".")[0];
