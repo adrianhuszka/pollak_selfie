@@ -10,7 +10,7 @@ export const imageSaveToDB = async (image: string) => {
   try {
     const result = await prisma.pictures.create({
       data: {
-        image: imageBlob,
+        image: imageBlob as any,
       },
     });
     return result;
