@@ -11,6 +11,7 @@ RUN npm install
 
 COPY . .
 
+RUN npx prisma generate
 RUN npm run build
 
 # Production stage
@@ -22,6 +23,8 @@ COPY package*.json .
 
 RUN npm ci --only=production
 
+COPY --from=build /app/node_modules/.prisma /app/node_modules/.prisma
+COPY --from=build /app/prisma /app/prisma
 COPY --from=build /dist ./dist
 
 # Create static/images folder
