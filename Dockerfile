@@ -23,8 +23,8 @@ COPY package*.json .
 
 RUN npm ci --only=production
 
-COPY --from=build /app/node_modules/.prisma /app/node_modules/.prisma
-COPY --from=build /app/prisma /app/prisma
+COPY --from=build /node_modules/.prisma ./node_modules/.prisma
+COPY --from=build /prisma ./prisma
 COPY --from=build /dist ./dist
 
 # Create static/images folder
