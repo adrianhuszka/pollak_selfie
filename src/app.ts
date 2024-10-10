@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { router as senderController } from "./controller/sender.controller";
+import bodyParser from "body-parser";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -15,6 +16,8 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 const port = process.env.APP_PORT || 3000;
 
