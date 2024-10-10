@@ -18,7 +18,7 @@ export function sendEmail(emailAddress: string, image: string) {
     from: process.env.EMAIL_FROM,
     to: emailAddress,
     subject: "Test Email",
-    html: `<h1>Üdvözlünk a pollákból!</h1><br/><img title="Hi" alt="hi" src="cid:image" />`,
+    html: `<h1>Üdvözlünk a Pollákból!</h1><br/><img title="Hi" alt="hi" src="cid:image" />`,
     attachments: [
       {
         filename: "image.jpg",
