@@ -9,6 +9,9 @@ export function sendEmail(emailAddress: string, image: string) {
       pass: process.env.EMAIL_PASS,
     },
     secure: false,
+    tls: {
+      ciphers: "SSLv3"
+    }
   });
 
   const mailData = {
