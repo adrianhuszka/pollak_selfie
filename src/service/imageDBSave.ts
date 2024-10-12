@@ -1,20 +1,19 @@
-import { PrismaClient } from '@prisma/client';
-import { b64toBlob } from '../utils/base64ToBlobConvertes';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export const imageSaveToDB = async (image: string) => {
-  const imageBlob = b64toBlob(image);
+  console.log("inSaveDb");
+  const imageBlob = Buffer.from(image, "base64");
 
-  console.log('imageBlob: ', imageBlob);
   try {
     const result = await prisma.pictures.create({
       data: {
-        image: imageBlob as any,
+        image: imageBlob,
       },
     });
     return result;
   } catch (error: Error | any) {
-    console.error('Error in imageDBSave: ', error);
+    console.error("Error in imageDBSave: ", error);
   }
 };

@@ -10,15 +10,15 @@ export function sendEmail(emailAddress: string, image: string) {
     },
     secure: false,
     tls: {
-      ciphers: "SSLv3"
-    }
+      ciphers: "SSLv3",
+    },
   });
 
   const mailData = {
     from: process.env.EMAIL_FROM,
     to: emailAddress,
-    subject: "Test Email",
-    html: `<h1>Üdvözlünk a Pollákból!</h1><br/><img title="Hi" alt="hi" src="cid:image" />`,
+    subject: process.env.EMAIL_SUBJECT,
+    html: `${process.env.EMAIL_BODY}<br/><img title="Üdvözlünk a Pollákból!" alt="Üdvözlünk a Pollákból!" src="cid:image" />`,
     attachments: [
       {
         filename: "image.jpg",
@@ -33,7 +33,7 @@ export function sendEmail(emailAddress: string, image: string) {
     if (err) {
       console.log(`Error: ${err}`);
     } else {
-      console.log(`Response: ${info}`);
+      console.log(`Response: ${info.response}`);
     }
   });
 }
