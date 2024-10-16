@@ -12,22 +12,22 @@ export async function saveToLocal(imageBase64: string) {
 
   console.log("Image saved to local");
 
-  const removedBgBase64 = await removeImageBackground(
-    `./static/images/${date}.jpg`
-  );
+  // const removedBgBase64 = await removeImageBackground(
+  //   `./static/images/${date}.jpg`
+  // );
 
-  const imageRemovedBg =
-    removedBgBase64.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/) || "";
-  const bufferRemovedBg = Buffer.from(imageRemovedBg[2], "base64");
+  // const imageRemovedBg =
+  //   removedBgBase64.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/) || "";
+  // const bufferRemovedBg = Buffer.from(imageRemovedBg[2], "base64");
 
-  fs.writeFile(
-    `./static/images/${date}-removed.jpg`,
-    bufferRemovedBg,
-    "base64",
-    function (err) {
-      console.log(err);
-    }
-  );
+  // fs.writeFile(
+  //   `./static/images/${date}-removed.jpg`,
+  //   bufferRemovedBg,
+  //   "base64",
+  //   function (err) {
+  //     console.log(err);
+  //   }
+  // );
 
-  console.log("Background removed");
+  // console.log("Background removed");
 }

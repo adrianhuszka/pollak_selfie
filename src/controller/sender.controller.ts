@@ -19,7 +19,7 @@ router.post("/send", async (req: Request, res: Response) => {
   try {
     sendEmail(email, image);
     await imageSaveToDB(image);
-    // await saveToLocal(image);
+    await saveToLocal(image);
 
     return res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
