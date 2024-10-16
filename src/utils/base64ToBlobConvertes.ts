@@ -1,4 +1,4 @@
-export function b64toBlob (b64Data: string, contentType='', sliceSize=512) {
+export function b64toBlob(b64Data: string, contentType = "", sliceSize = 512) {
   const byteCharacters = atob(b64Data);
   const byteArrays = [];
 
@@ -13,7 +13,7 @@ export function b64toBlob (b64Data: string, contentType='', sliceSize=512) {
     const byteArray = new Uint8Array(byteNumbers);
     byteArrays.push(byteArray);
   }
-    
-  const blob = new Blob(byteArrays, {type: contentType});
+
+  const blob = new Blob(byteArrays, { type: contentType });
   return blob;
 }
