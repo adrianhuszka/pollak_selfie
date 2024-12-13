@@ -11,13 +11,17 @@ dotenv.config();
 const app: Express = express();
 
 var corsOptions = {
-  origin: ["https://selfie.pollak.info", "http://localhost:5173"],
+  origin: [
+    "https://selfie.pollak.info",
+    "http://localhost:5173",
+    "https://bufe.pollak.info",
+  ],
   optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 const port = process.env.APP_PORT || 3000;
 
