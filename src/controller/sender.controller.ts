@@ -6,22 +6,20 @@ import { imageSaveToDB } from "../service/imageDBSave";
 const router: Router = express.Router();
 
 router.post("/send", async (req: Request, res: Response) => {
-  const { email, image } = req.body;
-
-  if (!email) {
-    return res.status(400).json({ message: "Email address is required" });
-  }
+  const { email, image, path } = req.body;
 
   if (!image) {
     return res.status(400).json({ message: "Image is required" });
   }
 
   try {
-    sendEmail(email, image);
-    //await imageSaveToDB(image);
-    await saveToLocal(image);
+    if (email) sendEmail(email, image);
+    await imageSaveToDB(image);
+    await saveToLocal(path, image);
 
-    return res.status(200).json({ message: "Email sent successfully" });
+    return res
+      .status(200)
+      .json({ message: "Email sent and/or saved successfully" });
   } catch (error) {
     return res
       .status(500)
