@@ -14,7 +14,7 @@ router.post("/send", async (req: Request, res: Response) => {
 
   try {
     if (email) sendEmail(email, image);
-    await imageSaveToDB(image);
+    // await imageSaveToDB(image);
     await saveToLocal(path, image);
 
     return res

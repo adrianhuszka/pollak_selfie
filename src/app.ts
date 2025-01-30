@@ -15,6 +15,7 @@ var corsOptions = {
     "https://selfie.pollak.info",
     "http://localhost:5173",
     "https://bufe.pollak.info",
+    /https:\/\/[a-z0-9]+\.pollak\.info/,
   ],
   optionsSuccessStatus: 200,
 };
