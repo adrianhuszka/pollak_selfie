@@ -2,6 +2,8 @@ import fs from "fs";
 import { removeImageBackground } from "../utils/backgroundRemover";
 
 export async function saveToLocal(path: string, imageBase64: string) {
+  fs.mkdirSync(`./static/images/${path}`, { recursive: true });
+
   const date = new Date().toISOString().replace(/:/g, "-").split(".")[0];
   const image = imageBase64.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/) || "";
   const buffer = Buffer.from(image[2], "base64");
