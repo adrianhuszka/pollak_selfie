@@ -1,6 +1,11 @@
 import nodemailer from "nodemailer";
 
-export function sendEmail(emailAddress: string, image: string) {
+export function sendEmail(
+  emailAddress: string,
+  image: string,
+  emailSubject: string,
+  emailBody: string
+): void {
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: Number(process.env.EMAIL_PORT),
@@ -17,8 +22,10 @@ export function sendEmail(emailAddress: string, image: string) {
   const mailData = {
     from: process.env.EMAIL_FROM,
     to: emailAddress,
-    subject: process.env.EMAIL_SUBJECT,
-    html: `${process.env.EMAIL_BODY}<br/><img title="Üdvözlünk a Pollákból!" alt="Üdvözlünk a Pollákból!" src="cid:image" />`,
+    subject: emailSubject ?? process.env.EMAIL_SUBJECT,
+    html: `${
+      emailBody ?? process.env.EMAIL_BODY
+    }<br/><img title="Üdvözlünk a Pollákból!" alt="Üdvözlünk a Pollákból!" src="cid:image" />`,
     attachments: [
       {
         filename: "image.jpg",
